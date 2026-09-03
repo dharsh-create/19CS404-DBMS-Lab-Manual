@@ -1,53 +1,75 @@
 # Experiment 2: DDL Commands
-```
 
-**Output:**
+## AIM
+To study and implement DDL commands and different types of constraints.
 
-![image](https://github.com/user-attachments/assets/591defed-3658-4976-a479-3704104d7909)
+## THEORY
 
-**Question 8**
+### 1. CREATE
+Used to create a new relation (table).
 
-![image](https://github.com/user-attachments/assets/db29c91b-9692-462e-ac58-ad7c8a035391)
-
+**Syntax:**
 ```sql
-ALTER TABLE Companies ADD COLUMN designation varchar(50);
-ALTER TABLE Companies ADD COLUMN net_salary number;
-ALTER TABLE Companies ADD COLUMN dob date;
+CREATE TABLE (
+  field_1 data_type(size),
+  field_2 data_type(size),
+  ...
+);
 ```
-
-**Output:**
-
-![image](https://github.com/user-attachments/assets/36f6e886-cdbc-40c1-937c-7d2559a0e7b3)
-
-**Question 9**
-
-![image](https://github.com/user-attachments/assets/04c55e88-d808-4cce-9f43-0a4b2daa2943)
-
+### 2. ALTER
+Used to add, modify, drop, or rename fields in an existing relation.
+(a) ADD
 ```sql
-CREATE TABLE jobs(
-job_id INT,
-job_title TEXT DEFAULT '',
-min_salary INT DEFAULT 8000,
-max_salary INT DEFAULT NULL);
+ALTER TABLE std ADD (Address CHAR(10));
 ```
-
-**Output:**
-
-![image](https://github.com/user-attachments/assets/4d67b31f-2b95-4c12-add8-b3054eb0448f)
-
-**Question 10**
-
-![image](https://github.com/user-attachments/assets/baedcb9b-7706-43c1-afd3-a0ca26f7c903)
-
+(b) MODIFY
 ```sql
-ALTER TABLE Student_details ADD COLUMN Email VARCHAR(50);
-ALTER TABLE Student_details ADD COLUMN MARKS INT DEFAULT 0;
+ALTER TABLE relation_name MODIFY (field_1 new_data_type(size));
 ```
-
-**Output:**
-
-![image](https://github.com/user-attachments/assets/e2dcd365-c733-4639-9d0d-e9db05b3eda1)
-
-
-## RESULT
-Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+(c) DROP
+```sql
+ALTER TABLE relation_name DROP COLUMN field_name;
+```
+(d) RENAME
+```sql
+ALTER TABLE relation_name RENAME COLUMN old_field_name TO new_field_name;
+```
+### 3. DROP TABLE
+Used to permanently delete the structure and data of a table.
+```sql
+DROP TABLE relation_name;
+```
+### 4. RENAME
+Used to rename an existing database object.
+```sql
+RENAME TABLE old_relation_name TO new_relation_name;
+```
+### CONSTRAINTS
+Constraints are used to specify rules for the data in a table. If there is any violation between the constraint and the data action, the action is aborted by the constraint. It can be specified when the table is created (using CREATE TABLE) or after it is created (using ALTER TABLE).
+### 1. NOT NULL
+When a column is defined as NOT NULL, it becomes mandatory to enter a value in that column.
+Syntax:
+```sql
+CREATE TABLE Table_Name (
+  column_name data_type(size) NOT NULL
+);
+```
+### 2. UNIQUE
+Ensures that values in a column are unique.
+Syntax:
+```sql
+CREATE TABLE Table_Name (
+  column_name data_type(size) UNIQUE
+);
+```
+### 3. CHECK
+Specifies a condition that each row must satisfy.
+Syntax:
+```sql
+CREATE TABLE Table_Name (
+  column_name data_type(size) CHECK (logical_expression)
+);
+```
+### 4. PRIMARY KEY
+Used to uniquely identify each record in a table.
+Properties:
